@@ -16,6 +16,16 @@ class AppInstallCommand extends Command
     protected $description = 'Creates all the basic things and install everything that is needed';
 
     private string $admin = 'SuperAdmin';
+    private string $user = 'User';
+
+    private array $userPermissions = [
+        //browsing permissions
+        'browse-dashboard',
+        'browse-profile',
+        'browse-me',
+        //editing permissions
+        'edit-me',
+    ];
 
     private array $permission = [
         //browsing permissions
@@ -23,13 +33,13 @@ class AppInstallCommand extends Command
             'name' => 'browse-dashboard'
         ],
         [
-            'name' => 'browse-management'
-        ],
-        [
             'name' => 'browse-profile'
         ],
         [
             'name' => 'browse-me'
+        ],
+        [
+            'name' => 'browse-management'
         ],
         [
             'name' => 'browse-users'
@@ -129,6 +139,16 @@ class AppInstallCommand extends Command
 
         $user->assignRole($role);
 
+        (User::create([
+            'name' => 'User',
+            'avatar' => 'logo.jpeg',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('password'),
+        ]))->assignRole(Role::create([
+            'name' => $this->user
+        ])->syncPermissions([
+            $this->userPermissions
+        ]));
         $this->info('Application installed successfully');
 
         return CommandAlias::SUCCESS;
