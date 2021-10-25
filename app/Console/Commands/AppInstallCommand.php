@@ -26,6 +26,12 @@ class AppInstallCommand extends Command
             'name' => 'browse-management'
         ],
         [
+            'name' => 'browse-profile'
+        ],
+        [
+            'name' => 'browse-me'
+        ],
+        [
             'name' => 'browse-users'
         ],
         [
@@ -58,6 +64,10 @@ class AppInstallCommand extends Command
         ],
 
         //editing permissions
+
+        [
+            'name' => 'edit-me',
+        ],
         [
             'name' => 'edit-users'
         ],
@@ -87,11 +97,6 @@ class AppInstallCommand extends Command
         parent::__construct();
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
     public function handle(): int
     {
         $this->info('Migrating tables');

@@ -32,7 +32,7 @@
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->roles->first()?->name}}</td>
-                                <td>{{$user->created_at->format('M. Y')}}</td>
+                                <td>{{$user->created_at->format('d M Y H:i')}}</td>
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{route('users.edit',$user->id)}}" class="btn btn-sm btn-warning">{{__('Update')}}</a>

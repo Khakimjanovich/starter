@@ -21,9 +21,9 @@
 
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed dark-mode">
 <div class="wrapper">
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand  navbar-dark">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
@@ -47,7 +47,7 @@
                         </p>
                     </li>
                     <li class="user-footer">
-                        <a href="#" class="btn btn-default btn-flat">{{__('Profile')}}</a>
+                        <a href="{{route('profile.me')}}" class="btn btn-default btn-flat">{{__('Profile')}}</a>
                         <a href="#" class="btn btn-default btn-flat float-right"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             {{__('Sign out')}}
@@ -82,7 +82,7 @@
             </div>
         </div>
         <section class="content">
-            @yield('content')
+                @yield('content')
         </section>
     </div>
     <footer class="main-footer">

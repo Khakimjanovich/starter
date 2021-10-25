@@ -6,10 +6,31 @@
         </a>
     </li>
 @endcan
+@can('browse-profile')
+    <li class="nav-item @if(Route::is('profile.*')){{'menu-open'}}@endif">
+        <a href="#" class="nav-link ">
+            <i class="nav-icon fas fa-user"></i>
+            <p>
+                {{__('Profile')}}
+                <i class="right fas fa-angle-left"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            @can('browse-me')
+                <li class="nav-item">
+                    <a href="{{route('profile.me')}}" class="nav-link @if(Route::is('profile.me')){{' active'}}@endif">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>{{__('Me')}}</p>
+                    </a>
+                </li>
+            @endcan
+        </ul>
+    </li>
+@endcan
 @can('browse-management')
     <li class="nav-item @if(Route::is('users.*')||Route::is('roles.*')||Route::is('permissions.*')){{'menu-open'}}@endif">
         <a href="#" class="nav-link ">
-            <i class="nav-icon fas fa-user"></i>
+            <i class="nav-icon fas fa-adjust"></i>
             <p>
                 {{__('Management')}}
                 <i class="right fas fa-angle-left"></i>
