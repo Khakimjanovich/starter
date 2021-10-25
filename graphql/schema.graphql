@@ -19,11 +19,53 @@ type Query {
     permission(id: ID @eq): Permission @find
 }
 
+type Mutation {
+    createUser(
+        name: String!,
+        avatar: String,
+        email: String! @rules(apply: ["email","unique:users,email"]),
+        password: String! @hash
+    ): User @create(model: "App\\Models\\User")
+    updateUser(
+        id: ID! @eq,
+        name: String,
+        avatar: String,
+        email: String @rules(apply: ["email"]),
+        password: String @hash
+    ): User @update(model: "App\\Models\\User")
+    deleteUser(
+        id: ID! @eq
+    ): User @delete(model: "App\\Models\\User")
+
+    createRole(
+        name: String!,
+    ): Role @create(model: "App\\Models\\Role")
+    updateRole(
+        id: ID! @eq
+        name: String!,
+    ): Role @update(model: "App\\Models\\Role")
+    deleteRole(
+        id: ID! @eq
+    ): Role @delete(model: "App\\Models\\Role")
+
+    createPermission(
+        name: String!,
+    ): Permission @create(model: "App\\Models\\Permission")
+    updatePermission(
+        id: ID! @eq
+        name: String!,
+    ): Permission @update(model: "App\\Models\\Permission")
+    deletePermission(
+        id: ID! @eq
+    ): Permission @delete(model: "App\\Models\\Permission")
+}
+
 type User {
     id: ID!
     name: String!
+    avatar: String
     email: String!
-    roles: [Role!]!
+    roles: [Role!]! @belongsToMany
     created_at: DateTime!
     updated_at: DateTime!
 }
@@ -31,12 +73,16 @@ type User {
 type Role {
     id: ID!
     name: String!
+    permissions: [Permission!]! @belongsToMany
+    users: [User!]!
     created_at: DateTime!
     updated_at: DateTime!
 }
+
 type Permission {
     id: ID!
     name: String!
+    roles: [Role!]! @belongsToMany
     created_at: DateTime!
     updated_at: DateTime!
 }
