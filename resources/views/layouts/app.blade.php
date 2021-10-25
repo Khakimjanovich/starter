@@ -9,9 +9,16 @@
           integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
           crossorigin="anonymous"/>
     <link rel="stylesheet" href="{{asset('AdminLTE/plugins/fontawesome-free/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('AdminLTE/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     @yield('third_party_stylesheets')
     @stack('page_css')
+    <link rel="stylesheet" href="{{asset('AdminLTE/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
     <link rel="stylesheet" href="{{asset('AdminLTE/dist/css/adminlte.min.css')}}">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -25,13 +32,13 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                    <img src="{{asset('logo.jpeg')}}"
+                    <img src="{{Auth::user()->avatar}}"
                          class="user-image img-circle elevation-2" alt="User Image">
                     <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <li class="user-header bg-primary">
-                        <img src="{{asset('logo.jpeg')}}"
+                        <img src="{{Auth::user()->avatar}}"
                              class="img-circle elevation-2"
                              alt="User Image">
                         <p>
@@ -69,8 +76,6 @@
                                 <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
                                 <li class="breadcrumb-item active">{{explode('.',\Illuminate\Support\Str::ucfirst(Route::current()->getName()))[0]}}</li>
                             @endif
-
-
                         </ol>
                     </div>
                 </div>
@@ -82,17 +87,55 @@
     </div>
     <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.0.5
+            <b>Version</b> 1.0.0
         </div>
-        <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+        <strong>Copyright &copy; 2021 <a href="https://t.me/khakimjanovich">Yunusali Abduraxmanov</a>.</strong> All rights
         reserved.
     </footer>
 </div>
 <script src="{{asset('AdminLTE/plugins/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('AdminLTE/plugins/select2/js/select2.full.min.js')}}"></script>
+<script src="{{asset('AdminLTE/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('AdminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{asset('AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{asset('AdminLTE/plugins/jszip/jszip.min.js')}}"></script>
+<script src="{{asset('AdminLTE/plugins/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{asset('AdminLTE/plugins/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{asset('AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{asset('AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+<script src="{{asset('AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+    $('.select2').select2()
+    $('.select2bs4').select2({
+        theme: 'bootstrap4'
+    })
+</script>
 @yield('third_party_scripts')
-@stack('page_scripts')
+<script src="{{asset('AdminLTE/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <script src="{{asset('AdminLTE/dist/js/adminlte.min.js')}}"></script>
-<script src="{{asset('AdminLTE/dist/js/demo.js')}}"></script>
+@if(session('message'))
+    <script>
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            icon: "{{ session('type') }}",
+            title: "{{ session('message') }}",
+            timer: 5000
+        });
+    </script>
+    @php(session()->pull('message'))
+    @php(session()->pull('type'))
+@endif
 </body>
 </html>

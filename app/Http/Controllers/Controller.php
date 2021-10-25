@@ -10,4 +10,20 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function success(string $message)
+    {
+        session()->put([
+            'type' => 'success',
+            'message' => $message,
+        ]);
+    }
+
+    public function error(string $message)
+    {
+        session()->put([
+            'type' => 'error',
+            'message' => $message,
+        ]);
+    }
 }

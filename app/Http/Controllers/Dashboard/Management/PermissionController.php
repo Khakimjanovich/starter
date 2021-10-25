@@ -26,37 +26,54 @@ class PermissionController extends Controller
     public function store(StoreRequest $request): RedirectResponse
     {
         Permission::create($request->validated());
+        $this->success('Created successfully!');
 
         return redirect()->route('permissions.index');
     }
 
-    public function show($id): View
+    public function edit($id): View|RedirectResponse
     {
         $permission = Permission::findById($id);
 
-        return view('management.permissions.show', compact('permission'));
-    }
+        if (!$permission) {
+            $this->error('Cannot find the model!');
 
-    public function edit($id): View
-    {
-        $permission = Permission::findById($id);
+            return redirect()->back();
+        }
 
         return view('management.permissions.edit', compact('permission'));
     }
 
     public function update(UpdateRequest $request, $id): RedirectResponse
     {
-        (Permission::findById($id))->update($request->validated());
+        $permission = Permission::findById($id);
+        if (!$permission) {
+            $this->error('Cannot find the model!');
 
-        return redirect()->route('permissions.index');
+            return redirect()->back();
+        }
+
+        $permission->update($request->validated());
+
+        $this->success('Updated successfully');
+
+        return redirect()->back();
     }
 
     public function destroy($id): RedirectResponse
     {
         $permission = Permission::findById($id);
 
+        if (!$permission) {
+            $this->error('Cannot find the model!');
+
+            return redirect()->back();
+        }
+
         $permission->delete();
 
-        return redirect()->route('permissions.index');
+        $this->success('Deleted Successfully!');
+
+        return redirect()->back();
     }
 }

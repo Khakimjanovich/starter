@@ -8,6 +8,7 @@ use App\Http\Requests\Management\Users\UpdateRequest;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -29,6 +30,11 @@ class UserController extends Controller
         $validated['password'] = bcrypt($validated['password']);
         User::create($validated);
 
+        session()->put([
+            'message' => 'Created a new model successfully',
+            'type' => 'success'
+        ]);
+
         return redirect()->route('users.index');
     }
 
@@ -42,24 +48,64 @@ class UserController extends Controller
 
     public function edit($id): View
     {
-        $user = User::find($id);
+        $user  = User::find($id);
+        $roles = Role::all();
 
-        return view('management.users.edit', compact('user'));
+        return view('management.users.edit', compact('user', 'roles'));
     }
 
 
-    public function update(UpdateRequest $request, $id): View
+    public function update(UpdateRequest $request, $id): RedirectResponse
     {
-        $user = User::find($id);
-        $user->update($request->validated());
+        $validated = $request->validated();
 
-        return view('management.users.edit', compact('user'));
+        if ($request->password) {
+            $validated['password'] = bcrypt($request->password);
+        } else {
+            unset($validated['password']);
+        }
+
+        $user = User::find($id);
+        if (!$user) {
+            session()->put([
+                'message' => 'Cannot find a model',
+                'type' => 'error',
+            ]);
+
+            return redirect()->back();
+        }
+
+        $user->syncRoles($request->roles);
+
+        $user->update($validated);
+
+        session()->put([
+            'message' => 'Updated model successfully',
+            'type' => 'success'
+        ]);
+
+        return redirect()->back();
     }
 
     public function destroy($id): RedirectResponse
     {
         $user = User::find($id);
+
+        if (!$user) {
+            session()->put([
+                'message' => 'Cannot find a model',
+                'type' => 'error',
+            ]);
+
+            return redirect()->back();
+        }
+
         $user->delete();
+
+        session()->put([
+            'message' => 'Deleted the model successfully',
+            'type' => 'success'
+        ]);
 
         return redirect()->back();
     }

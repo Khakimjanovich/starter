@@ -48,7 +48,6 @@
     <script src="{{asset('AdminLTE/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js')}}"></script>
     <script>
         $(function () {
-            //Bootstrap Duallistbox
             $('.duallistbox').bootstrapDualListbox()
         })
     </script>

@@ -116,6 +116,7 @@ class AppInstallCommand extends Command
         $this->info('Creating a user');
         $user = User::create([
             'name' => 'Yunusali Abduraxmanov',
+            'avatar' => 'logo.jpeg',
             'email' => 'yunusalikhakimjanovich@gmail.com',
             'password' => bcrypt('password')
         ]);

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Dashboard\Management;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Management\Roles\StoreRequest;
 use App\Http\Requests\Management\Roles\UpdateRequest;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Permission;
@@ -30,19 +32,30 @@ class RoleController extends Controller
     {
         (Role::create($request->validated()))->syncPermissions($request->permissions);
 
-        return redirect()->route('roles.index')->withErrors([
-            'status' => true,
-            'error' => __('Created successfully!')
+        session()->put([
+            'type' => 'success',
+            'message' => 'Created!',
         ]);
+
+        return redirect()->route('roles.index');
     }
 
-    public function edit($id): View
+    public function edit($id): RedirectResponse|View
     {
         $role = Role::findById($id);
 
+        if (!$role) {
+            session()->put([
+                'type' => 'error',
+                'message' => 'Cannot find a model with given parameter!',
+            ]);
+
+            return redirect()->back();
+        }
+
         $permissions = Permission::all();
 
-        return view('management.roles.edit', compact('role','permissions'));
+        return view('management.roles.edit', compact('role', 'permissions'));
     }
 
     public function update(UpdateRequest $request, $id): RedirectResponse
@@ -50,29 +63,47 @@ class RoleController extends Controller
         $role = Role::findById($id);
 
         if (!$role) {
-            return redirect()->back()->withErrors([
-                'status' => false,
-                'error' => __('Cannot find a model with given parameter')
+            session()->put([
+                'type' => 'error',
+                'message' => 'Cannot find a model with given parameter!',
             ]);
+
+            return redirect()->back();
         }
 
         $role->update($request->validated());
 
         $role->syncPermissions($request->permissions);
 
-        return redirect()->route('roles.index')->withErrors([
-            'status' => true,
-            'error' => __('Updated successfully!')
+        session()->put([
+            'type' => 'success',
+            'message' => 'Updated successfully!',
         ]);
+
+        return redirect()->back();
     }
 
     public function destroy($id): RedirectResponse
     {
-        (Role::findById($id))->delete();
 
-        return redirect()->route('roles.index')->withErrors([
-            'status' => true,
-            'error' => __('Deleted successfully!')
+        $role = Role::findById($id);
+
+        if (!$role) {
+            session()->put([
+                'type' => 'error',
+                'message' => 'Cannot find a model with given parameter!',
+            ]);
+
+            return redirect()->back();
+        }
+
+        $role->delete();
+
+        session()->put([
+            'type' => 'success',
+            'message' => 'Deleted!',
         ]);
+
+        return redirect()->back();
     }
 }
