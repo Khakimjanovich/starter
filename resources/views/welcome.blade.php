@@ -1,60 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <title>eNno Bootstrap Template - Index</title>
+    <title>{{config('app.name')}}</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-
-    <!-- Favicons -->
-    <link href="{{asset('eNno/assets/img/favicon.png')}}" rel="icon">
+    <link href="{{asset('logo.jpeg')}}" rel="icon">
     <link href="{{asset('eNno/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
     <link href="{{asset('eNno/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
-
-    <!-- =======================================================
-    * Template Name: eNno - v4.6.0
-    * Template URL: https://bootstrapmade.com/enno-free-simple-bootstrap-template/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
+    <link href="{{asset('ENno/assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{asset('ENno/assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+    <link href="{{asset('ENno/assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+    <link href="{{asset('ENno/assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+    <link href="{{asset('ENno/assets/css/style.css')}}" rel="stylesheet">
 </head>
-
 <body>
-
-<!-- ======= Header ======= -->
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
-
-        <h1 class="logo"><a href="index.html">eNno</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
+        <h1 class="logo"><a href="#">{{config('app.name')}}</a></h1>
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                <li><a class="nav-link scrollto" href="#about">About</a></li>
-                <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-                <li><a class="nav-link scrollto" href="#team">Team</a></li>
-                <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+                <li><a class="nav-link scrollto active" href="#hero">{{__('home')}}</a></li>
+                <li><a class="nav-link scrollto" href="#about">{{__('About')}}</a></li>
+                <li><a class="nav-link scrollto" href="#services">{{__('Services')}}</a></li>
+                <li><a class="nav-link scrollto " href="#portfolio">{{__('Portfolio')}}</a></li>
+                <li><a class="nav-link scrollto" href="#team">{{__('Team')}}</a></li>
+                <li class="dropdown"><a href="#"><span>{{__('Drop Down')}}</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="#">Drop Down 1</a></li>
-                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                        <li class="dropdown"><a href="#"><span>{{__('Deep Drop Down')}}</span> <i class="bi bi-chevron-right"></i></a>
                             <ul>
                                 <li><a href="#">Deep Drop Down 1</a></li>
                                 <li><a href="#">Deep Drop Down 2</a></li>
@@ -75,35 +53,27 @@
         </nav><!-- .navbar -->
 
     </div>
-</header><!-- End Header -->
-
-<!-- ======= Hero Section ======= -->
+</header>
 <section id="hero" class="d-flex align-items-center">
-
     <div class="container">
         <div class="row">
             <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
                 <h1>Elegant and creative solutions</h1>
                 <h2>We are team of talented designers making websites with Bootstrap</h2>
                 <div class="d-flex">
-                    <a href="#about" class="btn-get-started scrollto">Get Started</a>
-                    <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+                    <a href="#about" class="btn-get-started scrollto">{{__('Get Started')}}</a>
+                    <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>{{__('Watch Video')}}</span></a>
                 </div>
             </div>
             <div class="col-lg-6 order-1 order-lg-2 hero-img">
-                <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+                <img src="{{asset('ENno/assets/img/hero-img.png')}}" class="img-fluid animated" alt="">
             </div>
         </div>
     </div>
-
-</section><!-- End Hero -->
-
+</section>
 <main id="main">
-
-    <!-- ======= Featured Services Section ======= -->
     <section id="featured-services" class="featured-services">
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-4 col-md-6">
                     <div class="icon-box">
@@ -127,17 +97,14 @@
                     </div>
                 </div>
             </div>
-
         </div>
-    </section><!-- End Featured Services Section -->
-
-    <!-- ======= About Section ======= -->
+    </section>
     <section id="about" class="about">
         <div class="container">
 
             <div class="row">
                 <div class="col-lg-6">
-                    <img src="assets/img/about.png" class="img-fluid" alt="">
+                    <img src="{{asset('ENno/assets/img/about.png')}}" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0 content">
                     <h3>Voluptatem dignissimos provident quasi corporis voluptates</h3>
@@ -148,7 +115,9 @@
                     <ul>
                         <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
                         <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-                        <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda</li>
+                        <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta
+                            storacalaperda
+                        </li>
                     </ul>
                     <p>
                         Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
@@ -158,9 +127,7 @@
             </div>
 
         </div>
-    </section><!-- End About Section -->
-
-    <!-- ======= Counts Section ======= -->
+    </section>
     <section id="counts" class="counts">
         <div class="container">
 
@@ -189,9 +156,7 @@
             </div>
 
         </div>
-    </section><!-- End Counts Section -->
-
-    <!-- ======= Services Section ======= -->
+    </section>
     <section id="services" class="services section-bg">
         <div class="container">
 
@@ -253,9 +218,7 @@
             </div>
 
         </div>
-    </section><!-- End Services Section -->
-
-    <!-- ======= Portfolio Section ======= -->
+    </section>
     <section id="portfolio" class="portfolio">
         <div class="container">
 
@@ -279,101 +242,108 @@
             <div class="row portfolio-container">
 
                 <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                    <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+                    <img src="{{asset('ENno/assets/img/portfolio/portfolio-1.jpg')}}" class="img-fluid" alt="">
                     <div class="portfolio-info">
                         <h4>App 1</h4>
                         <p>App</p>
-                        <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        <a href="{{asset('ENno/assets/img/portfolio/portfolio-1.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i
+                                class="bx bx-plus"></i></a>
+                        <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                    <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
+                    <img src="{{asset('ENno/assets/img/portfolio/portfolio-2.jpg')}}" class="img-fluid" alt="">
                     <div class="portfolio-info">
                         <h4>Web 3</h4>
                         <p>Web</p>
-                        <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        <a href="{{asset('ENno/assets/img/portfolio/portfolio-2.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i
+                                class="bx bx-plus"></i></a>
+                        <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                    <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
+                    <img src="{{asset('ENno/assets/img/portfolio/portfolio-3.jpg')}}" class="img-fluid" alt="">
                     <div class="portfolio-info">
                         <h4>App 2</h4>
                         <p>App</p>
-                        <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        <a href="{{asset('ENno/assets/img/portfolio/portfolio-3.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i
+                                class="bx bx-plus"></i></a>
+                        <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                    <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
+                    <img src="{{asset('ENno/assets/img/portfolio/portfolio-4.jpg')}}" class="img-fluid" alt="">
                     <div class="portfolio-info">
                         <h4>Card 2</h4>
                         <p>Card</p>
-                        <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        <a href="{{asset('ENno/assets/img/portfolio/portfolio-4.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 2"><i
+                                class="bx bx-plus"></i></a>
+                        <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                    <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
+                    <img src="{{asset('ENno/assets/img/portfolio/portfolio-5.jpg')}}" class="img-fluid" alt="">
                     <div class="portfolio-info">
                         <h4>Web 2</h4>
                         <p>Web</p>
-                        <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        <a href="{{asset('ENno/assets/img/portfolio/portfolio-5.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 2"><i
+                                class="bx bx-plus"></i></a>
+                        <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                    <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
+                    <img src="{{asset('ENno/assets/img/portfolio/portfolio-6.jpg')}}" class="img-fluid" alt="">
                     <div class="portfolio-info">
                         <h4>App 3</h4>
                         <p>App</p>
-                        <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        <a href="{{asset('ENno/assets/img/portfolio/portfolio-6.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i
+                                class="bx bx-plus"></i></a>
+                        <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                    <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
+                    <img src="{{asset('ENno/assets/img/portfolio/portfolio-7.jpg')}}" class="img-fluid" alt="">
                     <div class="portfolio-info">
                         <h4>Card 1</h4>
                         <p>Card</p>
-                        <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        <a href="{{asset('ENno/assets/img/portfolio/portfolio-7.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 1"><i
+                                class="bx bx-plus"></i></a>
+                        <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                    <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
+                    <img src="{{asset('ENno/assets/img/portfolio/portfolio-8.jpg')}}" class="img-fluid" alt="">
                     <div class="portfolio-info">
                         <h4>Card 3</h4>
                         <p>Card</p>
-                        <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        <a href="{{asset('ENno/assets/img/portfolio/portfolio-8.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 3"><i
+                                class="bx bx-plus"></i></a>
+                        <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                    <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
+                    <img src="{{asset('ENno/assets/img/portfolio/portfolio-9.jpg')}}" class="img-fluid" alt="">
                     <div class="portfolio-info">
                         <h4>Web 3</h4>
                         <p>Web</p>
-                        <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        <a href="{{asset('ENno/assets/img/portfolio/portfolio-9.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i
+                                class="bx bx-plus"></i></a>
+                        <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                     </div>
                 </div>
 
             </div>
 
         </div>
-    </section><!-- End Portfolio Section -->
-
-    <!-- ======= Testimonials Section ======= -->
+    </section>
     <section id="testimonials" class="testimonials section-bg">
         <div class="container">
 
@@ -390,10 +360,11 @@
                         <div class="testimonial-item">
                             <p>
                                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                                Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh
+                                et. Maecen aliquam, risus at semper.
                                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                             </p>
-                            <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                            <img src="{{asset('Enno/assets/img/testimonials/testimonials-1.jpg')}}" class="testimonial-img" alt="">
                             <h3>Saul Goodman</h3>
                             <h4>Ceo &amp; Founder</h4>
                         </div>
@@ -403,10 +374,11 @@
                         <div class="testimonial-item">
                             <p>
                                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster
+                                fugiat irure amet legam anim culpa.
                                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                             </p>
-                            <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                            <img src="{{asset('ENno/assets/img/testimonials/testimonials-2.jpg')}}" class="testimonial-img" alt="">
                             <h3>Sara Wilsson</h3>
                             <h4>Designer</h4>
                         </div>
@@ -416,10 +388,11 @@
                         <div class="testimonial-item">
                             <p>
                                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                                Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram
+                                fore quis sint minim.
                                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                             </p>
-                            <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                            <img src="{{asset('ENno/assets/img/testimonials/testimonials-3.jpg')}}" class="testimonial-img" alt="">
                             <h3>Jena Karlis</h3>
                             <h4>Store Owner</h4>
                         </div>
@@ -429,10 +402,11 @@
                         <div class="testimonial-item">
                             <p>
                                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+                                Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt
+                                elit fore quem dolore labore illum veniam.
                                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                             </p>
-                            <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                            <img src="{{asset('ENno/assets/img/testimonials/testimonials-4.jpg')}}" class="testimonial-img" alt="">
                             <h3>Matt Brandon</h3>
                             <h4>Freelancer</h4>
                         </div>
@@ -442,10 +416,11 @@
                         <div class="testimonial-item">
                             <p>
                                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                                Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum
+                                fugiat legam esse veniam culpa fore nisi cillum quid.
                                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                             </p>
-                            <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                            <img src="{{asset('ENno/assets/img/testimonials/testimonials-5.jpg')}}" class="testimonial-img" alt="">
                             <h3>John Larson</h3>
                             <h4>Entrepreneur</h4>
                         </div>
@@ -456,22 +431,19 @@
             </div>
 
         </div>
-    </section><!-- End Testimonials Section -->
-
-    <!-- ======= Cta Section ======= -->
+    </section>
     <section id="cta" class="cta">
         <div class="container">
 
             <div class="text-center">
                 <h3>Call To Action</h3>
-                <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum.</p>
                 <a class="cta-btn" href="#">Call To Action</a>
             </div>
 
         </div>
-    </section><!-- End Cta Section -->
-
-    <!-- ======= Team Section ======= -->
+    </section>
     <section id="team" class="team section-bg">
         <div class="container">
 
@@ -484,7 +456,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                     <div class="member">
-                        <img src="assets/img/team/team-1.jpg" alt="">
+                        <img src="{{asset('ENno/assets/img/team/team-1.jpg')}}" alt="">
                         <h4>Walter White</h4>
                         <span>Chief Executive Officer</span>
                         <p>
@@ -501,7 +473,7 @@
 
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                     <div class="member">
-                        <img src="assets/img/team/team-2.jpg" alt="">
+                        <img src="{{asset('ENno/assets/img/team/team-2.jpg')}}" alt="">
                         <h4>Sarah Jhinson</h4>
                         <span>Product Manager</span>
                         <p>
@@ -518,7 +490,7 @@
 
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                     <div class="member">
-                        <img src="assets/img/team/team-3.jpg" alt="">
+                        <img src="{{asset('ENno/assets/img/team/team-3.jpg')}}" alt="">
                         <h4>William Anderson</h4>
                         <span>CTO</span>
                         <p>
@@ -536,9 +508,7 @@
             </div>
 
         </div>
-    </section><!-- End Team Section -->
-
-    <!-- ======= Contact Section ======= -->
+    </section>
     <section id="contact" class="contact">
         <div class="container">
 
@@ -570,13 +540,15 @@
                             <p>+1 5589 55488 55s</p>
                         </div>
 
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
+                            frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
                     </div>
 
                 </div>
 
                 <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                    <form action="#" method="post" role="form" class="php-email-form">
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="name">Your Name</label>
@@ -600,18 +572,17 @@
                             <div class="error-message"></div>
                             <div class="sent-message">Your message has been sent. Thank you!</div>
                         </div>
-                        <div class="text-center"><button type="submit">Send Message</button></div>
+                        <div class="text-center">
+                            <button type="submit">Send Message</button>
+                        </div>
                     </form>
                 </div>
 
             </div>
 
         </div>
-    </section><!-- End Contact Section -->
-
-</main><!-- End #main -->
-
-<!-- ======= Footer ======= -->
+    </section>
+</main>
 <footer id="footer">
 
     <div class="footer-top">
@@ -656,21 +627,14 @@
             Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
     </div>
-</footer><!-- End Footer -->
-
+</footer>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-<!-- Vendor JS Files -->
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
-<script src="assets/vendor/purecounter/purecounter.js"></script>
-<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-<!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
-
+<script src="{{asset('ENno/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('ENno/assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+<script src="{{asset('ENno/assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+<script src="{{asset('ENno/assets/vendor/php-email-form/validate.js')}}"></script>
+<script src="{{asset('ENno/assets/vendor/purecounter/purecounter.js')}}"></script>
+<script src="{{asset('ENno/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+<script src="{{asset('ENno/assets/js/main.js')}}"></script>
 </body>
-
 </html>

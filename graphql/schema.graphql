@@ -5,6 +5,7 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 type Query {
+    me: User @auth
     "get Users"
     users: [User!]! @paginate(defaultCount: 10)
     "get Single user by Id"
@@ -25,7 +26,7 @@ type Mutation {
         avatar: String,
         email: String! @rules(apply: ["email","unique:users,email"]),
         password: String! @hash
-    ): User @create(model: "App\\Models\\User")
+    ): User @create(model: "App\\Models\\User") @guard
     updateUser(
         id: ID! @eq,
         name: String,
@@ -36,7 +37,6 @@ type Mutation {
     deleteUser(
         id: ID! @eq
     ): User @delete(model: "App\\Models\\User")
-
     createRole(
         name: String!,
     ): Role @create(model: "App\\Models\\Role")
@@ -47,7 +47,6 @@ type Mutation {
     deleteRole(
         id: ID! @eq
     ): Role @delete(model: "App\\Models\\Role")
-
     createPermission(
         name: String!,
     ): Permission @create(model: "App\\Models\\Permission")
@@ -58,7 +57,13 @@ type Mutation {
     deletePermission(
         id: ID! @eq
     ): Permission @delete(model: "App\\Models\\Permission")
+    login(email: String!, password: String!): Login!
+    logout: User @guard
 }
+type Login{
+    token: String!
+}
+
 
 type User {
     id: ID!

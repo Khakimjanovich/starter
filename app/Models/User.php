@@ -10,7 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, HasApiTokens;
 
     protected $fillable = [
         'name',
@@ -30,6 +30,6 @@ class User extends Authenticatable
 
     public function getAvatarAttribute(): string
     {
-        return config('app.url') . '/' . ($this->attributes['avatar']??'logo.jpeg');
+        return config('app.url') . '/' . ($this->attributes['avatar'] ?? 'logo.jpeg');
     }
 }

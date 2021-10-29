@@ -7,9 +7,7 @@ use App\Http\Controllers\Dashboard\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', [\App\Http\Controllers\Main\MainController::class,'index'])->name('welcome');
 Auth::routes();
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard')->middleware(['auth',]);
 Route::group([
