@@ -15,10 +15,7 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => [
-                'required',
-                Rule::unique('permissions', 'name')->ignore((int)$this->get('id'))
-            ]
+            'name' => ['required', Rule::unique('permissions')->ignore($this->id)]
         ];
     }
 }

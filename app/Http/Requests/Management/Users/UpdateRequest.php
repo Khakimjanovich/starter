@@ -16,14 +16,10 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => [
-                'email',
-                'required',
-                Rule::unique('users', 'email')->ignore((int)($this->request->get('id')))
-            ],
+            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($this->id)],
             'password' => 'sometimes|confirmed',
             'roles' => 'sometimes|array',
-            'roles.*' => 'required|exists:roles,name'
+            'roles.*' => 'sometimes|exists:roles,name',
         ];
     }
 }

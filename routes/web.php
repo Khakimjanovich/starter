@@ -1,22 +1,23 @@
 <?php
 
-use App\Http\Controllers\Dashboard\Management\PermissionController;
-use App\Http\Controllers\Dashboard\Management\RoleController;
-use App\Http\Controllers\Dashboard\Management\UserController;
-use App\Http\Controllers\Dashboard\ProfileController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\Management\PermissionController;
+use App\Http\Controllers\Management\RoleController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Management\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [\App\Http\Controllers\Main\MainController::class,'index'])->name('welcome');
-Auth::routes();
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard')->middleware(['auth',]);
+require __DIR__ . '/auth.php';
+Route::get('/', fn() => view('welcome'))->middleware('log')->name('welcome');
+
 Route::group([
     'prefix' => 'dashboard',
-    'middleware' => ['auth', 'can:browse-dashboard',]
+    'middleware' => ['auth', 'verified', 'log'],
 ], function () {
-    Route::resource('users', UserController::class)->middleware('can:browse-users');
-    Route::resource('roles', RoleController::class)->middleware('can:browse-roles');
-    Route::resource('permissions', PermissionController::class)->middleware('can:browse-permissions');
-    Route::get('profile/me', [ProfileController::class, 'me'])->middleware('can:browse-me')->name('profile.me');
-    Route::put('profile/update', [ProfileController::class, 'meUpdate'])->middleware('can:edit-me')->name('profile.update');
+    Route::get('/', [DashboardController::class,'index'])->name('dashboard');
+    Route::resource('/users', UserController::class);
+    Route::resource('/roles', RoleController::class);
+    Route::resource('/permissions', PermissionController::class);
+    Route::get('/devices', [DeviceController::class, 'index'])->name('devices.index');
 });
+
