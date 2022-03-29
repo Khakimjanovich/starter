@@ -14,6 +14,7 @@
     @stack('styles')
     <link rel="stylesheet" href="{{asset('admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
+    @paddleJS
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed dark-mode">

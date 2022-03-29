@@ -24,6 +24,14 @@ class Device extends Model
         'payload',
         'headers',
         'count',
+        'country_name',
+        'country_code',
+        'region_name',
+        'region_code',
+        'city_name',
+        'zip_code',
+        'latitude',
+        'longitude',
     ];
 
     protected $casts = [

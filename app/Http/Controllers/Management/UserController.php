@@ -61,7 +61,7 @@ class UserController extends Controller
     public function update(UpdateRequest $request, $id): RedirectResponse
     {
         $user = $this->repository->find($id);
-        $this->repository->syncRoles($user, $request->roles);
+        $this->repository->syncRoles($user, $request->roles ?? []);
         $this->repository->update($user, $request->validated());
         $this->success('Updated successfully');
 

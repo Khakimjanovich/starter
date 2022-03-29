@@ -25,6 +25,7 @@
                 <th>{{__('Browser')}}</th>
                 <th>{{__('Device')}}</th>
                 <th>{{__('Route')}}</th>
+                <th>{{__('Location')}}</th>
                 <th>{{__('Count')}}</th>
             </tr>
             </thead>
@@ -76,18 +77,30 @@
                                 <button
                                     class="btn btn-xs
                                         @if($request['action'] === 'GET')
-                                            {{'btn-primary'}}
-                                        @elseif($request['action'] === 'PUT')
-                                            {{'btn-warning'}}
-                                        @elseif($request['action'] === 'POST')
-                                            {{'btn-success'}}
-                                        @elseif($request['action'] === 'DELETE')
-                                            {{'btn-danger'}}
-                                        @endif"
-                                    >
+                                    {{'btn-primary'}}
+                                    @elseif($request['action'] === 'PUT')
+                                    {{'btn-warning'}}
+                                    @elseif($request['action'] === 'POST')
+                                    {{'btn-success'}}
+                                    @elseif($request['action'] === 'DELETE')
+                                    {{'btn-danger'}}
+                                    @endif"
+                                >
                                     {{$request['action']}}
                                 </button>
                                 <button class="btn btn-xs btn-default">{{$request['route']}}</button>
+                            </div>
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach($device['country'] as $country)
+                            <div class="btn-group">
+                                <button
+                                    class="btn btn-xs btn-dark"
+                                >
+                                    {{$country['country_code']}}
+                                </button>
+                                <button class="btn btn-xs btn-default">{{$country['region_name']}}</button>
                             </div>
                         @endforeach
                     </td>
@@ -105,6 +118,7 @@
                 <th>{{__('Browser')}}</th>
                 <th>{{__('Device')}}</th>
                 <th>{{__('Route')}}</th>
+                <th>{{__('Location')}}</th>
                 <th>{{__('Count')}}</th>
             </tr>
             </tfoot>
