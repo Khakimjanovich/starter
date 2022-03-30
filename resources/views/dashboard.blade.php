@@ -53,24 +53,33 @@
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box mb-3 text-decoration-none">
                     <span class="info-box-icon bg-success elevation-1"><i class="fas fa-coffee"></i></span>
-                    <a onclick="buyProduct(26155)" class="text-white">
-                        <div class="info-box-content">
-                            <span class="info-box-text">Buy me a coffee</span>
-                            <span class="info-box-number">1$</span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Buy me a coffee</span>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="btn-group">
+                                    <select class="form-control select2" id="plan">
+                                        @foreach($plans as $key => $plan)
+
+                                            <option value="{{$plan}}"
+                                                    @if($plan ==='subscribed'){{'disabled'}}@endif
+                                                    @if ($loop->first) {{'selected'}} @endif
+                                            >
+                                                <span class="info-box-number">{{$key}}</span>
+                                                @if($plan === 'subscribed')
+                                                    <span class="oi oi-circle-check success"></span>
+                                                @endif
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <button class="btn btn-success"
+                                            onclick="window.location.href = document.getElementById('plan').value">Buy
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
-                <script>
-                    function buyProduct(productId) {
-                        Paddle.Checkout.open({
-                            product: productId,
-                            email: '{{auth()->user()->email}}',
-                            passthrough: {
-                                user_id: '{{auth()->id()}}'
-                            }
-                        });
-                    }
-                </script>
             </div>
         </div>
     </div>

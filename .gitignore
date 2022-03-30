@@ -15,3 +15,4 @@ yarn-error.log
 /.vscode
 /schema-directives.graphql
 /_lighthouse_ide_helper.php
+/storage/*.index

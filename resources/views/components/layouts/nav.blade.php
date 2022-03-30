@@ -5,6 +5,26 @@
         </li>
     </ul>
     <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                <i class="fas fa-search"></i>
+            </a>
+            <div class="navbar-search-block" style="display: none;">
+                <form class="form-inline">
+                    <div class="input-group input-group-sm">
+                        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-navbar" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </li>
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                 <img src="{{Auth::user()->avatar??asset('logo.jpeg')}}"
@@ -22,7 +42,7 @@
                     </p>
                 </li>
                 <li class="user-footer">
-                    <a href="{{route('welcome')}}" class="btn btn-default btn-flat">{{__('Profile')}}</a>
+                    <a href="{{route('account')}}" class="btn btn-default btn-flat">{{__('Profile')}}</a>
                     <a href="#" class="btn btn-default btn-flat float-right"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         {{__('Sign out')}}
