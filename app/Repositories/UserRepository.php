@@ -46,6 +46,8 @@ class UserRepository
 
     public function delete(User $user)
     {
+        $user->devices()->delete();
+
         $user->delete();
     }
 }

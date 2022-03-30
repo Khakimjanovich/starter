@@ -51,16 +51,26 @@
                 <!-- /.info-box -->
             </div>
             <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-text">Sales</span>
-                        <span class="info-box-number">760</span>
-                    </div>
-                    <!-- /.info-box-content -->
+                <div class="info-box mb-3 text-decoration-none">
+                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-coffee"></i></span>
+                    <a onclick="buyProduct(26155)" class="text-white">
+                        <div class="info-box-content">
+                            <span class="info-box-text">Buy me a coffee</span>
+                            <span class="info-box-number">1$</span>
+                        </div>
+                    </a>
                 </div>
-                <!-- /.info-box -->
+                <script>
+                    function buyProduct(productId) {
+                        Paddle.Checkout.open({
+                            product: productId,
+                            email: '{{auth()->user()->email}}',
+                            passthrough: {
+                                user_id: '{{auth()->id()}}'
+                            }
+                        });
+                    }
+                </script>
             </div>
         </div>
     </div>

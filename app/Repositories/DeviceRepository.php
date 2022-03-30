@@ -13,16 +13,17 @@ class DeviceRepository
     {
         $devices = Device
             ::with('user')
-            ->whereDate('created_at','LIKE',$request->date??Carbon::today()->format('Y-m-d'))
+            ->whereDate('created_at', 'LIKE', $request->date ?? Carbon::today()->format('Y-m-d'))
             ->orderBy('updated_at', 'DESC')
             ->get()
             ->groupBy('ip_address');
-        
+
         return $devices->map(function ($grouped_devices) {
             $user = [];
             $platform = [];
             $browser = [];
             $device_type = [];
+            $location = [];
             $request = [];
             $count = 0;
             $last_interacted = '';
@@ -35,17 +36,22 @@ class DeviceRepository
                 $count += $device->count;
                 $last_interacted = ($last_interacted > $device->updated_at) ? $last_interacted : $device->updated_at;
                 $request[$i]['action'] = $device->action;
-                $request[$i]['route'] = $device->route;
+                $request[$i]['route'] = ((strlen($device->route) > 30)) ? substr($device->route, 0,27) . '... ' : $device->route;
+                $location[$i]['country_code'] = $device->country_code ?? 'UN';
+                $location[$i]['region_name'] = $device->region_name ?? '-KNOWN';
+
                 $i++;
             }
+
             unset($grouped_devices);
             $returns = [];
             $returns['user'] = array_unique($user);
             $returns['platform'] = array_unique($platform);
             $returns['browser'] = array_unique($browser);
             $returns['device_type'] = array_unique($device_type);
-            $returns['request'] = $request;
+            $returns['request'] = array_unique($request, SORT_REGULAR);
             $returns['count'] = $count;
+            $returns['country'] = array_unique($location, SORT_REGULAR);
             $returns['updated_at'] = $last_interacted;
             return $returns;
         });
