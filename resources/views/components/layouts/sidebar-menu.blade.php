@@ -5,7 +5,8 @@
 
             @canany(['users.index','roles.index','permissions.index','devices.index'])
                 <li class="nav-item @if(Route::is('users.*')||Route::is('roles.*')||Route::is('permissions.*')||Route::is('devices.*')){{'menu-open active'}}@endif">
-                    <a href="#" class="nav-link @if(Route::is('users.*')||Route::is('roles.*')||Route::is('permissions.*')||Route::is('devices.*')){{'active'}}@endif">
+                    <a href="#"
+                       class="nav-link @if(Route::is('users.*')||Route::is('roles.*')||Route::is('permissions.*')||Route::is('devices.*')){{'active'}}@endif">
                         <i class="nav-icon fas fa-adjust"></i>
                         <p>
                             {{__('Management')}}
@@ -32,6 +33,20 @@
                     </ul>
                 </li>
             @endcan
+            <li class="nav-item @if(Route::is('account*')||Route::is('actions*')){{'menu-open active'}}@endif">
+                <a href="#"
+                   class="nav-link @if(Route::is('account*')||Route::is('actions*')){{'active'}}@endif">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>
+                        {{__('Profile')}}
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <x-layouts.sidebar-list name="Account" route="account"
+                                            active="account*" icon="far fa-circle"/>
+                </ul>
+            </li>
         </ul>
     </nav>
 </div>

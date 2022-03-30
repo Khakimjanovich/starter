@@ -2,13 +2,14 @@
     'type' => 'email',
     'name'=>'email',
     'placeholder' =>'Email',
-    'span' => 'fas fa-envelope'
+    'span' => 'fas fa-envelope',
+    'value' => ''
 ])
 
 <div class="input-group mb-3">
     <input type="{{$type}}"
            name="{{$name}}"
-           value="{{ old($name) }}"
+           value="{{ $value ?? old($name) }}"
            placeholder="{{$placeholder}}"
            class="form-control @error($name) is-invalid @enderror">
     <div class="input-group-append">
