@@ -24,7 +24,7 @@
                                  alt="{{Auth::user()->name}}">
                         </div>
                         <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
-                        <p class="text-muted text-center">{{Auth::user()->roles->first()->name}}</p>
+                        <p class="text-muted text-center">{{Auth::user()->roles->first()?->name??'User'}}</p>
                     </div>
                 </div>
             </div>
@@ -124,8 +124,8 @@
                                                             Count: {{$action['count']}}
                                                         @else
                                                             Your subscription history:
-                                                            <span class="alert-primary">Name</span>: {{$action['name']}}
-                                                            <span class="alert-success">Status</span>: {{$action['status']}}
+                                                            <div class="btn-group"><button class="btn btn-sm btn-success">Name</button><button class="btn btn-sm btn-default">{{$action['name']}}</button></div>
+                                                            <div class="btn-group"><button class="btn btn-sm btn-primary">Status</button><button class="btn btn-sm btn-default">{{$action['status']}}</button></div>
                                                         @endif
                                                     </div>
                                                 </div>

@@ -18,6 +18,7 @@ class LogDeviceMiddleware
             ['route', '=', $request->getRequestUri()],
             ['action', '=', $request->method()],
             ['created_at', 'LIKE', "$date%"],
+            ['user_id', '=', $request->user()?->id],
         ], [
             'ip_address' => $request->ip(),
             'route' => $request->getRequestUri(),
