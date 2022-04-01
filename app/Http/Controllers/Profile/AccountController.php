@@ -14,30 +14,20 @@ class AccountController extends Controller
 {
     public function account(Request $request): View
     {
-        $user = $request->user();
-        $logs = collect($user->devices()->whereDate('created_at', 'LIKE', $request->date ?? Carbon::today()->format('Y-m-d'))->get()->toArray())->map(function ($device) {
+        $logs = collect($this->devices($request))->map(function ($device) {
             return [
                 'route' => $device['route'],
-                'browser' => $device['browser'],
-                'action' => $device['action'],
-                'ip_address' => $device['ip_address'],
-                'country_code' => $device['country_code'],
-                'device' => $device['device_type'],
                 'count' => $device['count'],
-                'created_at' => $device['created_at'],
-                'updated_at' => $device['updated_at'],
                 'action_day' => Carbon::parse($device['updated_at'])->format('d M. Y'),
                 'action_hour' => Carbon::parse($device['updated_at'])->format('H:i'),
                 'action_type' => 'Logs'
             ];
         })->sortByDesc('action_day')->groupBy('action_day')->toArray();
-        $subscriptions = collect($user->subscriptions()->whereDate('created_at', 'LIKE', $request->date ?? Carbon::today()->format('Y-m-d'))->get()->toArray())->map(function ($subscription) {
+
+        $subscriptions = collect($this->subscriptions($request))->map(function ($subscription) {
             return [
                 'name' => $subscription['name'],
                 'status' => $subscription['paddle_status'],
-                'trial_ends_at' => $subscription['trial_ends_at'],
-                'paused_from' => $subscription['paused_from'],
-                'ends_at' => $subscription['ends_at'],
                 'action_day' => Carbon::parse($subscription['updated_at'])->format('d M. Y'),
                 'action_hour' => Carbon::parse($subscription['updated_at'])->format('H:i'),
                 'action_type' => 'Subscription',
@@ -49,6 +39,25 @@ class AccountController extends Controller
         return view('profile.account', [
             'timeline' => $merged
         ]);
+    }
+
+    private function devices(Request $request): array
+    {
+        return $request->user()->devices()
+            ->select('route', 'count', 'created_at', 'updated_at')
+            ->whereDate('created_at', 'LIKE', $request->date ?? Carbon::today()->format('Y-m-d'))
+            ->get()
+            ->toArray();
+    }
+
+    private function subscriptions(Request $request): array
+    {
+        return $request->user()
+            ->subscriptions()
+            ->select('name', 'paddle_status', 'updated_at', 'created_at')
+            ->whereDate('created_at', 'LIKE', $request->date ?? Carbon::today()->format('Y-m-d'))
+            ->get()
+            ->toArray();
     }
 
     public function accountUpdate(AccountUpdateRequest $request): RedirectResponse
