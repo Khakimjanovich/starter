@@ -16,3 +16,4 @@ yarn-error.log
 /schema-directives.graphql
 /_lighthouse_ide_helper.php
 /storage/*.index
+/packages

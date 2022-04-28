@@ -9,14 +9,15 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "ext-simplexml": "*",
         "guzzlehttp/guzzle": "^7.2",
         "jenssegers/agent": "^2.6",
         "laravel/breeze": "^1.8",
         "laravel/cashier-paddle": "^1.5",
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.14.1",
-        "laravel/tinker": "^2.7",
         "laravel/scout": "^9.4",
+        "laravel/tinker": "^2.7",
         "spatie/laravel-permission": "^5.5",
         "stevebauman/location": "^6.3",
         "teamtnt/laravel-scout-tntsearch-driver": "^11.6"

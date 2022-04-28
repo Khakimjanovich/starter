@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <link rel="stylesheet"
+          href="{{asset('admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
     @stack('styles')
     <link rel="stylesheet" href="{{asset('admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
@@ -56,6 +58,13 @@
     $('.select2').select2()
     $('.select2bs4').select2({
         theme: 'bootstrap4'
+    })
+</script>
+<script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
+<script src="{{asset('admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js')}}"></script>
+<script>
+    $(function () {
+        $('.duallistbox').bootstrapDualListbox()
     })
 </script>
 @stack('scripts')
